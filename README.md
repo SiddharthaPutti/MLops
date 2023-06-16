@@ -57,6 +57,90 @@ A simple clarification, docker is used only to package different version depende
     
     ```
 
+Some common question I have until now:
+ * is docker hub similar to kubernetes?
+    * Docker Hub is a cloud-based registry service provided by Docker that allows users to store and distribute container images.  
+    *  Kubernetes is an open-source container orchestration platform. It provides a framework for automating the deployment, scaling, and management of containerized applications.  
+
+   * How to write a dockerfile for python project?
+      ```
+       # Use an official Python runtime as the base image
+       FROM python:3.9
+       
+       # Set the working directory in the container
+       WORKDIR /app
+       
+       # Copy the requirements.txt file to the container
+       COPY requirements.txt .
+       
+       # Install the project dependencies (no cache ensures, pip avoids using any cached packages while installing)
+       RUN pip install --no-cache-dir -r requirements.txt
+       
+       # Copy the rest of the project files to the container
+       COPY . .
+       
+       # Specify the command to run when the container starts
+       CMD [ "python", "your_script.py" ]
+
+      ```
+
+      Now, requirements.txt file should look like,
+
+      ```
+      Flask==2.0.1
+      numpy==1.21.0
+      pandas==1.3.0
+
+      ```
+
+      Build and run docker image by saying:
+
+     ```
+     docker build -t your_image_name .
+     docker run your_image_name
+     ```
+
+
+   * Is the version number required to specify in requirements.txt?
+    * You can specify without a version number, docker by default installs the latest version if not specified, but it is highly recommended to mention the specific version you used for the project.
+  
+   * What If you forgot to mention any packages in the requirements.txt?
+     * If you forget to include a required package in the requirements.txt file, the container may not be able to run properly after creating the image. As a result, if your application relies on a package that is not listed in the requirements.txt file, running the container may lead to errors or unexpected behavior. If you realize that you have forgotten to include a package in the requirements.txt file, you will need to modify the file, add the missing package, and rebuild the Docker image to include the updated dependencies.
+
+    * should I copy all the project files? why is it required to copy all the files in the docker? it only requires dependencies to be installed in the container?
+      * it is recommended to copy all the porject files to the docker image. you can just specify
+        ```
+        COPY . .
+        ```
+        This will make sure to copy all the files in the working directory to copy. you can also copy files that are only rewuired by:
+        ```
+        COPY main.py
+        # or
+        COPY data/ data/ 
+        ```
+        In this case, the main.py file will be copied to the root of the /app directory within the container, and the data directory (along with its contents) will be copied to the /app/data directory within the container.
+
+      * including other files makes it easy for accessing and changing the code for debugging purposes by other developers. YES, others can view the code from the docker image and are able to make changes within the container.
+      * Including these additional files in the Docker image ensures that your application has all the required dependencies and resources in a self-contained environment.
+      * To access the files from Image:
+        ```
+        docker exec -it <container_id> /bin/bash
+
+        # This command opens an interactive shell session within the running container. They can navigate to the project directory (the working directory specified in the Dockerfile, e.g., /app) and view, edit, or execute the project files as needed.
+        ```
+        ```
+        # you can execute python script inside the running container by:
+        
+        docker exec <container_id> python /path/to/script.py
+        ```
+
+      
+
+      
+        
+        
+   
+
   
     
     
