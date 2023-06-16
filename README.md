@@ -82,7 +82,7 @@ Some common questions I have until now:
        # Specify the command to run when the container starts
        CMD [ "python", "your_script.py" ]
 
-      ```
+      ```  
 
       Now, the requirements.txt file should look like this,
 
@@ -91,7 +91,7 @@ Some common questions I have until now:
       numpy==1.21.0
       pandas==1.3.0
 
-      ```
+      ```  
 
       Build and run the docker image by saying:
 
@@ -121,12 +121,13 @@ Some common questions I have until now:
 
       * including other files makes it easy for accessing and changing the code for debugging purposes by other developers. YES, others can view the code from the docker image and are able to make changes within the container.
       * Including these additional files in the Docker image ensures that your application has all the required dependencies and resources in a self-contained environment.
-      * To access the files from Image:
+      * To access the files from Image:  
         ```
         docker exec -it <container_id> /bin/bash
 
-        # This command opens an interactive shell session within the running container. They can navigate to the project directory (the working directory specified in the Dockerfile, e.g., /app) and view, edit, or execute the project files as needed.
-        ```
+        # This command opens an interactive shell session within the running container.
+        # They can navigate to the project directory (the working directory specified in the Dockerfile, e.g., /app) and view, edit, or execute the project files as needed.
+        ```  
         ```
         # you can execute python script inside the running container by:
         
