@@ -82,7 +82,8 @@ Some common questions I have until now:
        # Specify the command to run when the container starts
        CMD [ "python", "your_script.py" ]
 
-      ```  
+      ```
+  
 
       Now, the requirements.txt file should look like this,
 
@@ -91,7 +92,8 @@ Some common questions I have until now:
       numpy==1.21.0
       pandas==1.3.0
 
-      ```  
+      ```
+  
 
       Build and run the docker image by saying:
 
