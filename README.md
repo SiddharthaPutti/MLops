@@ -57,12 +57,12 @@ A simple clarification, docker is used only to package different version depende
     
     ```
 
-Some common question I have until now:
- * is docker hub similar to kubernetes?
+Some common questions I have until now:
+ * Is the docker hub similar to Kubernetes?
     * Docker Hub is a cloud-based registry service provided by Docker that allows users to store and distribute container images.  
     *  Kubernetes is an open-source container orchestration platform. It provides a framework for automating the deployment, scaling, and management of containerized applications.  
 
-   * How to write a dockerfile for python project?
+* How to write a dockerfile for Python project?
       ```
        # Use an official Python runtime as the base image
        FROM python:3.9
@@ -71,7 +71,7 @@ Some common question I have until now:
        WORKDIR /app
        
        # Copy the requirements.txt file to the container
-       COPY requirements.txt .
+       COPY requirements.txt.
        
        # Install the project dependencies (no cache ensures, pip avoids using any cached packages while installing)
        RUN pip install --no-cache-dir -r requirements.txt
@@ -84,7 +84,7 @@ Some common question I have until now:
 
       ```
 
-      Now, requirements.txt file should look like,
+      Now, the requirements.txt file should look like this,
 
       ```
       Flask==2.0.1
@@ -93,21 +93,20 @@ Some common question I have until now:
 
       ```
 
-      Build and run docker image by saying:
+      Build and run the docker image by saying:
 
      ```
      docker build -t your_image_name .
      docker run your_image_name
      ```
 
-
-   * Is the version number required to specify in requirements.txt?
+ * Is the version number required to specify in requirements.txt?
     * You can specify without a version number, docker by default installs the latest version if not specified, but it is highly recommended to mention the specific version you used for the project.
   
-   * What If you forgot to mention any packages in the requirements.txt?
+ * What If you forgot to mention any packages in the requirements.txt?
      * If you forget to include a required package in the requirements.txt file, the container may not be able to run properly after creating the image. As a result, if your application relies on a package that is not listed in the requirements.txt file, running the container may lead to errors or unexpected behavior. If you realize that you have forgotten to include a package in the requirements.txt file, you will need to modify the file, add the missing package, and rebuild the Docker image to include the updated dependencies.
 
-    * should I copy all the project files? why is it required to copy all the files in the docker? it only requires dependencies to be installed in the container?
+ * Should I copy all the project files? why is it required to copy all the files in the docker? it only requires dependencies to be installed in the container?
       * it is recommended to copy all the porject files to the docker image. you can just specify
         ```
         COPY . .
