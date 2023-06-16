@@ -83,15 +83,15 @@ Some common questions I have until now:
        CMD [ "python", "your_script.py" ]
       ```
   
-      Now, the requirements.txt file should look like this,
-      ```
-      Flask==2.0.1
-      numpy==1.21.0
-      pandas==1.3.0
-      ```
+     Now, the requirements.txt file should look like this,
+     ```
+     Flask==2.0.1
+     numpy==1.21.0
+     pandas==1.3.0
+     ```
   
 
-      Build and run the docker image by saying:
+     Build and run the docker image by saying:
      ```
      docker build -t your_image_name .
      docker run your_image_name
