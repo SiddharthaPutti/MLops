@@ -1,8 +1,11 @@
 # MLops
 MLOPS basics and pipelines 
 
-Docker: 
-**Image**: a way to package applications and their dependencies. this makes sure every developer has the same set of packages and their versions. This container can run on any machine(Linux, windows, etc) by installing the packaged versions of dependencies(ex: python version, TensorFlow version).  
+**Docker**:  
+
+A simple clarification, docker is used only to package different version dependencies, like python 3.9, sklearn v2.8 for example. it doesn't package the entire codebase. so when you run a docker image, the container is initialized to create a different environment for the project you need to run. so that, the developer who built this project can share the dependencies in a package with the rest of the team where they can reproduce the results. 
+
+**Image**: a way to package applications and their dependencies. this makes sure every developer has the same set of packages and their versions. This Image can run on any machine(Linux, windows, etc) by installing the packaged versions of dependencies(ex: python version, TensorFlow version).  
 
 **Container**: The running instance of an image is called a container. This can also be defined as the process or an isolated environment that is running on a host operating system. When you start a container from an image, Docker creates a writable layer on top of the image called the container layer. This layer allows the container to have its own filesystem and make changes to it, such as writing data, installing additional packages, or modifying configurations.  
 
