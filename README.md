@@ -2,6 +2,10 @@
 MLOPS basics and pipelines 
 
 Docker: 
+**Image**: a way to package applications and their dependencies. this makes sure every developer has the same set of packages and their versions. This container can run on any machine(Linux, windows, etc) by installing the packaged versions of dependencies(ex: python version, TensorFlow version).  
+
+**Container**: The running instance of an image is called a container. This can also be defined as the process or an isolated environment that is running on a host operating system. When you start a container from an image, Docker creates a writable layer on top of the image called the container layer. This layer allows the container to have its own filesystem and make changes to it, such as writing data, installing additional packages, or modifying configurations.  
+
   * basic commands in VScode
     * docker info
     * docker version
